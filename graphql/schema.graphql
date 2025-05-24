@@ -1,0 +1,70 @@
+scalar Time
+
+"""
+Notice the exclamation mark. It means that it is a required field, 
+and therefore can’t be left empty. For the fields that are optional to a type, 
+it can be defined without the exclamation mark.
+"""
+type Account {
+    id: String!
+    name: String!
+    orders: [Order!]!
+}
+
+type Product {
+    id: String!
+    name: String!
+    description: String!
+    price: Float!
+}
+
+type Order {
+    id: String!
+    createdAt: Time!
+    totalPrice: Float!
+    prodcuts: [OrderedProduct!]!
+}
+
+type OrderedProduct {
+    id: String!
+    name: String!
+    description: String!   
+    price: Float!
+    quantity: Int!
+}
+
+input PaginationInput {
+    skip: Int
+    take: Int
+}
+
+input AccountInput {
+    name: String!
+}
+
+input ProductInput {
+    name: String!
+    description: String!
+    price: Float!
+}
+
+input OrderProductInput {
+    id: String!
+    quantity: Int!
+}
+
+input OrderInput {
+    accountId: String!
+    products: [OrderProductInput!]!
+}
+
+type Mutation {
+    createAccount(account: AccountInput!): Account
+    createProduct(product: ProductInput!): Product
+    createOrder(order: OrderInput!): Order
+}
+
+type Query {
+    accounts(pagination: PaginationInput, id: String): [Account!]!
+    products(pagination: PaginationInput, query: String, id: String): [Product!]!
+}
