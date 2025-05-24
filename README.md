@@ -65,6 +65,7 @@ Also, you will have to get next modules to config EntryPoint in main.go script.
     go get github.com/segmentio/ksuid
     go get github.com/tinrab/retry
     go get -u google.golang.org/grpc
+    go get gopkg.in/olivere/elastic.v5
 
 Or execute next command to clean and updates "go.mod" and "go.sum" by ensuring they reflect the actual dependencies required by the code.
 
